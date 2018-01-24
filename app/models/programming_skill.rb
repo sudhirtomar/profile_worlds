@@ -1,0 +1,2 @@
+class ProgrammingSkill < ApplicationRecord
+end
