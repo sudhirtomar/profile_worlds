@@ -12,24 +12,24 @@
 
 ActiveRecord::Schema.define(version: 20180124071304) do
 
-  create_table "blog_comments", force: :cascade do |t|
-    t.integer "blog_id"
+  create_table "blog_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "blog_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["blog_id"], name: "index_blog_comments_on_blog_id"
   end
 
-  create_table "blogs", force: :cascade do |t|
+  create_table "blogs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
     t.text "description"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.boolean "is_active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_blogs_on_user_id"
   end
 
-  create_table "companies", force: :cascade do |t|
+  create_table "companies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.text "description"
     t.string "linkedin_url"
@@ -39,12 +39,12 @@ ActiveRecord::Schema.define(version: 20180124071304) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "educations", force: :cascade do |t|
+  create_table "educations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.text "description"
     t.date "start_date"
     t.date "end_date"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "collage_url"
     t.string "collage_location"
     t.string "collage_name"
@@ -56,17 +56,17 @@ ActiveRecord::Schema.define(version: 20180124071304) do
     t.index ["user_id"], name: "index_educations_on_user_id"
   end
 
-  create_table "permissions", force: :cascade do |t|
+  create_table "permissions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "programming_skills", force: :cascade do |t|
+  create_table "programming_skills", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.integer "expert_level"
-    t.integer "user_id"
-    t.integer "project_id"
+    t.bigint "user_id"
+    t.bigint "project_id"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -74,13 +74,13 @@ ActiveRecord::Schema.define(version: 20180124071304) do
     t.index ["user_id"], name: "index_programming_skills_on_user_id"
   end
 
-  create_table "projects", force: :cascade do |t|
+  create_table "projects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.text "description"
     t.date "start_date"
     t.date "end_date"
-    t.integer "user_company_id"
-    t.integer "user_id"
+    t.bigint "user_company_id"
+    t.bigint "user_id"
     t.string "project_url"
     t.string "client"
     t.string "location"
@@ -91,20 +91,20 @@ ActiveRecord::Schema.define(version: 20180124071304) do
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
-  create_table "role_permissions", force: :cascade do |t|
-    t.integer "permission_id"
+  create_table "role_permissions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "permission_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["permission_id"], name: "index_role_permissions_on_permission_id"
   end
 
-  create_table "roles", force: :cascade do |t|
+  create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_addresses", force: :cascade do |t|
+  create_table "user_addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "first_line"
     t.string "second_line"
     t.string "area"
@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 20180124071304) do
     t.string "country"
     t.boolean "is_current"
     t.boolean "is_permanent"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.integer "pincode"
     t.text "other_details"
     t.datetime "created_at", null: false
@@ -121,13 +121,13 @@ ActiveRecord::Schema.define(version: 20180124071304) do
     t.index ["user_id"], name: "index_user_addresses_on_user_id"
   end
 
-  create_table "user_companies", force: :cascade do |t|
+  create_table "user_companies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.text "description"
     t.date "start_date"
     t.date "end_date"
-    t.integer "company_id"
-    t.integer "user_id"
+    t.bigint "company_id"
+    t.bigint "user_id"
     t.string "company_url"
     t.string "location"
     t.datetime "created_at", null: false
@@ -137,14 +137,14 @@ ActiveRecord::Schema.define(version: 20180124071304) do
     t.index ["user_id"], name: "index_user_companies_on_user_id"
   end
 
-  create_table "user_roles", force: :cascade do |t|
-    t.integer "user_id"
+  create_table "user_roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_user_roles_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
     t.string "first_name"
     t.string "last_name"
